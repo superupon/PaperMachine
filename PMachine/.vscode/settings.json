@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.mak": "makefile",
+        "clk_conf.h": "c"
+    }
+}
