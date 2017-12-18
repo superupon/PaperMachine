@@ -2,34 +2,39 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>3113048198</fileChecksum>
+  <fileChecksum>3495733823</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\Debug\Exe\templproj.out</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\PMachine.pbd</file>
       <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
       <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Exe\templproj.out</file>
+      <file>$PROJ_DIR$\Debug\Obj\PMachine.pbd</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
       <file>$TOOLKIT_DIR$\config\lnkstm8.icf</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\led.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\clk_conf.o</file>
+      <file>$PROJ_DIR$\src\led.c</file>
+      <file>$PROJ_DIR$\src\clk_conf.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\clk_conf.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\led.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\src\led.h</file>
+      <file>$PROJ_DIR$\src\clk_conf.h</file>
+      <file>$PROJ_DIR$\src\type_def.h</file>
+      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8s103f3.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+      <file>$PROJ_DIR$\src\main.c</file>
     </outputs>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 0</file>
-        </tool>
-      </outputs>
-    </file>
     <file>
       <name>$PROJ_DIR$\Debug\Exe\templproj.out</name>
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 7 3 5 6</file>
+          <file> 6 9 13 5 0 1</file>
         </tool>
       </inputs>
     </file>
@@ -38,13 +43,91 @@
       <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 3</file>
+          <file> 5</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 1</file>
+          <file> 2</file>
         </tool>
       </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\src\led.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 15 17 19 18 20 14</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19 17 18 15 20 14</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\src\clk_conf.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 16 17 19 18 20 14</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19 17 18 16 20 14</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\src\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 5</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 16 17 19 18 20 14 15</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19 17 18 16 15 20 14</file>
+        </tool>
+      </inputs>
     </file>
   </configuration>
   <configuration>
