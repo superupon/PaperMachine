@@ -1,31 +1,21 @@
-/******************** (C) COPYRIGHT  风驰iCreate嵌入式开发工作室 ***************************
- * 文件名  ：clk_conf.c
- * 描述    ：时钟配置函数库   
- * 实验平台：iCreate STM8开发板
- * 寄存器版本  ：V1.0.0
- * 作者    ：ling_guansheng  QQ：779814207
- * 博客    ：
- *修改时间 ：2011-12-20
-
-
-
+/**************************************************************************
+ * File Name: clk_conf.c
+ * Description : Clock Configuration Lib
+ * Writer: supeurpon@126.com
+ * Revision: 
 ****************************************************************************************/
 #include "clk_conf.h"
+
 /**************************************************************************
- * 函数名：Clk_conf
- * 描述  ：时钟配置函数
- * 输入  ：无
- *
- * 输出  ：无
- * 返回  ：无 
- * 调用  ：外部调用 
+ * Function Name: Clk_conf 
+ * Description: Clock configuration function
+ * Input: No
+ * Output: No
+ * Return: No
  *************************************************************************/
 void Clk_conf(void)
 {
- 
-  CLK_CKDIVR&= (uint8_t)(~0x18);/*时钟复位*/
-  CLK_CKDIVR|= (uint8_t)0x00;/*设置时钟为内部16M高速时钟*/
-  
+  CLK_CKDIVR&= (uint8_t)(~0x18); /*Clock Reset*/
+  CLK_CKDIVR|= (uint8_t)0x00;    /*Clock is set to internal 16MHz High Speed Clock*/
 }
 
-/******************* (C) COPYRIGHT 风驰iCreate嵌入式开发工作室 *****END OF FILE****/
