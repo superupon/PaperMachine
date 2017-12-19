@@ -27,6 +27,7 @@
       <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
       <file>$TOOLKIT_DIR$\inc\iostm8s103f3.h</file>
       <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+      <file>$PROJ_DIR$\src\stm8s_interruput.c</file>
       <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
       <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
       <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
@@ -113,11 +114,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 20 21 13 17 22 24 19 27 15 18 23 16 26 25 28 29 30 31</file>
+          <file> 20 22 13 17 23 25 19 28 15 18 24 16 27 26 29 30 31 32</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 16 17 19 18 20 15 13 27 22 23 26 24 30 31 28 29 21 25</file>
+          <file> 16 17 19 18 20 15 13 28 23 24 27 25 31 32 29 30 22 26</file>
         </tool>
       </inputs>
     </file>
@@ -126,7 +127,7 @@
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 34 4 8 10 33 3 5</file>
+          <file> 35 4 8 10 34 3 5</file>
         </tool>
       </inputs>
     </file>
@@ -135,21 +136,21 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 32</file>
+          <file> 33</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 33</file>
+          <file> 34</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 21 17 20 24 22 19 15 18 23 27 26 25 28 29 30 31</file>
+          <file> 22 17 20 25 23 19 15 18 24 28 27 26 29 30 31 32</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 27 17 19 18 20 15 22 23 26 24 30 31 28 29 21 25</file>
+          <file> 28 17 19 18 20 15 23 24 27 25 31 32 29 30 22 26</file>
         </tool>
       </inputs>
     </file>
