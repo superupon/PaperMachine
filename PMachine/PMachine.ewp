@@ -17,7 +17,7 @@
         <debug>1</debug>
         <option>
           <name>GenDeviceSelectMenu</name>
-          <state>UnspecifiedSTM8	STM8 - Unspecified</state>
+          <state>STM8S103F3P	STM8S103F3P</state>
         </option>
         <option>
           <name>GenCodeModel</name>
@@ -57,7 +57,7 @@
         </option>
         <option>
           <name>GenRTDescription</name>
-          <state></state>
+          <state>Use the normal configuration of the C/EC++ runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
         </option>
         <option>
           <name>GenRTConfigPath</name>
@@ -70,7 +70,7 @@
         </option>
         <option>
           <name>GenLibInFormatterDescription</name>
-          <state></state>
+          <state>Full formatting, without multibytes.</state>
         </option>
         <option>
           <name>GenLibOutFormatter</name>
@@ -79,7 +79,7 @@
         </option>
         <option>
           <name>GenLibOutFormatterDescription</name>
-          <state></state>
+          <state>Full formatting, without multibytes.</state>
         </option>
         <option>
           <name>GenStackSize</name>
@@ -118,7 +118,7 @@
         </option>
         <option>
           <name>GenMathFunctionDescription</name>
-          <state></state>
+          <state>Default variants of cos, sin, tan, log, log10, pow, and exp.</state>
         </option>
       </data>
     </settings>
@@ -488,7 +488,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state></state>
+          <state>PMachine.srec</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>
@@ -606,7 +606,7 @@
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>$TOOLKIT_DIR$\config\lnkstm8.icf</state>
+          <state>$TOOLKIT_DIR$\config\lnkstm8s103f3.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>
@@ -1596,6 +1596,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\src\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\src\uart.c</name>
     </file>
   </group>
 </project>
