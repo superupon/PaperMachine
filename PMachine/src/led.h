@@ -15,7 +15,7 @@ void Set_Led_On(void);
 void Set_Led_Off(void);
 void LED_Display(void);
 void LED_Display_Bit();
-
+void Delay(u32 nCount);
 #endif
 
 
