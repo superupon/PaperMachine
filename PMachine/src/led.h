@@ -1,21 +1,20 @@
-
 #ifndef __LED_CONF_H
 #define __LED_CONF_H
 #include "type_def.h"
 
-/* 定义位操作 前提是引脚设置为输出功能 */
+/*Define bit operation, precondition should be setting IO port to output*/
 #define PD0_out  PD_ODR_ODR0  
 #define PD1_out  PD_ODR_ODR1  
 #define PD2_out  PD_ODR_ODR2  
 #define PD3_out  PD_ODR_ODR3  
 
-/* LED函数定义 */
-void LED_conf(void);
-void Set_Led_On(void);
-void Set_Led_Off(void);
-void LED_Display(void);
-void LED_Display_Bit();
+/* LED Function Definition*/
+void LED_Conf(void);
+void LED_On(void);
+void LED_Off(void);
 void Delay(u32 nCount);
+void Blink(u8 speed);
+
 #endif
 
 
