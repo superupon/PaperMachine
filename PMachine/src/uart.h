@@ -12,5 +12,5 @@ void uart_conf(void);
 void UART1_SendByte(u8 data);
 void UART1_SendString(u8* Data,u16 len);
 u8 UART1_ReceiveByte(void);
-int fputc(int ch, FILE *f);
+//int fputc(int ch, FILE *f);
 #endif

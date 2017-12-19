@@ -108,12 +108,12 @@ u8 UART1_ReceiveByte(void)
  * 输出  ：无
  * 调用  ：由printf调用
  ***********************************************/
-int fputc(int ch, FILE *f)
-{  
+//int fputc(int ch, FILE *f)
+//{  
  /*将Printf内容发往串口*/ 
-  UART1_DR=(unsigned char)ch;
-  while (!(UART1_SR & UART1_FLAG_TXE));
-  return (ch);
-}
+  //UART1_DR=(unsigned char)ch;
+  //while (!(UART1_SR & UART1_FLAG_TXE));
+  //return (ch);
+//}
 /******************* (C) COPYRIGHT 风驰iCreate嵌入式开发工作室 *****END OF FILE****/
 
