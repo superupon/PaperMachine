@@ -1,15 +1,9 @@
 /**************************************************************************************
- * File Name  ：stm8s_interrupt.c
- * Description    ：中断服务子函数库   
- * 实验平台：iCreate STM8开发板
- * 寄存器版本  ：V1.0.0
- * 作者    ：ling_guansheng  QQ：779814207
- * 博客    ：
- *修改时间 ：2011-12-20
-
-
-
+ * File Name : stm8s_interrupt.c
+ * Description : interrupt service function   
+ * Writer : superupon@126.com
 ****************************************************************************************/
+
 #include "uart.h"
 u8 RxBuffer[RxBufferSize];
 u8 UART_RX_NUM=0;
@@ -110,32 +104,37 @@ __interrupt void UART1_TX_IRQHandler(void)
 }
 #pragma vector=0x14
 __interrupt void UART1_RX_IRQHandler(void)
-{ 
-    u8 Res;
-    if(UART1_SR & UART1_FLAG_RXNE)  
+{
+  u8 Res;
+  if (UART1_SR & UART1_FLAG_RXNE)
+  {
+    /*Receive Interrupt, must ended by 0x0d or 0x0a*/
+    Res = (uint8_t)UART1_DR;
+    /*(USART1->DR);*/
+    /*Read received data, when finished, clear RXNE Interrupt Flag*/
+    if ((UART_RX_NUM & 0x80) == 0) /*Received is not finished*/
     {
-      /*Receive Interrupt, must ended by 0x0d or 0x0a*/
-	Res =(uint8_t)UART1_DR;
-        /*(USART1->DR);读取接收到的数据,当读完数据后自动取消RXNE的中断标志位*/
-	if(( UART_RX_NUM&0x80)==0)/*接收未完成*/
-	{
-	    if( UART_RX_NUM&0x40)/*接收到了0x0d*/
-		{
-		  if(Res!=0x0a) UART_RX_NUM=0;/*接收错误,重新开始*/
-		  else  UART_RX_NUM|=0x80;	/*接收完成了 */
-		}
-            else /*还没收到0X0D*/
-              {	
-                if(Res==0x0d) UART_RX_NUM|=0x40;
-                else
-                  {
-                    RxBuffer[ UART_RX_NUM&0X3F]=Res ;
-                     UART_RX_NUM++;
-                      if( UART_RX_NUM>63) UART_RX_NUM=0;/*接收数据错误,重新开始接收*/  
-                  }		 
-	      }
-	 }  		 
+      if (UART_RX_NUM & 0x40) /*Recived 0x0d*/
+      {
+        if (Res != 0x0a)
+          UART_RX_NUM = 0; /*Receive error, restart*/
+        else
+          UART_RX_NUM |= 0x80; /*Reviced finshed*/
       }
+      else /*No receive 0x0d*/
+      {
+        if (Res == 0x0d)
+          UART_RX_NUM |= 0x40;
+        else
+        {
+          RxBuffer[UART_RX_NUM & 0X3F] = Res;
+          UART_RX_NUM++;
+          if (UART_RX_NUM > 63)
+            UART_RX_NUM = 0; /*Receive Error, restart*/
+        }
+      }
+    }
+  }
 }
 
 #pragma vector=0x15
@@ -176,5 +175,3 @@ __interrupt void EEPROM_EEC_IRQHandler(void)
   
 }
 
-
-/******************* (C) COPYRIGHT 风驰iCreate嵌入式开发工作室 *****END OF FILE****/
