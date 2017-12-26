@@ -9,12 +9,14 @@ int main( void )
   Clk_conf();
   uart_conf();
   LED_Conf();
+  EnableInterrupt;
   while(1)
   {
-    UART1_SendByte('a');
-    Delay(20000);
-    Delay(20000);
-    Blink(5);
+    UART1_SendByte('|');
+    Delay(40000);
+    Delay(60000);
+    Blink(1);
+    UART1_SendString(RxBuffer, UART_RX_NUM & 0x3F);
   }
   
   return 0;
