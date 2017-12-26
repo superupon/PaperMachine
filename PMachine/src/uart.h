@@ -8,6 +8,10 @@
 #define UART1_FLAG_TXE  (uint8_t)0x80  /* Transmit Data Register Empty flag */
 #define UART1_FLAG_RXNE (uint8_t)0x20 /* Read Data Register Not Empty flag */
 #define RxBufferSize 64
+
+extern u8 RxBuffer[RxBufferSize];
+extern u8 UART_RX_NUM;
+
 void uart_conf(void);
 void UART1_SendByte(u8 data);
 void UART1_SendString(u8* Data,u16 len);
