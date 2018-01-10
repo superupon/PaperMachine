@@ -111,28 +111,11 @@ __interrupt void UART1_RX_IRQHandler(void)
     /*Receive Interrupt, must ended by 0x0d or 0x0a*/
     Res = (uint8_t)UART1_DR;
     /*(USART1->DR);*/
-    /*Read received data, when finished, clear RXNE Interrupt Flag*/
-    if ((UART_RX_NUM & 0x80) == 0) /*Received is not finished*/
+    RxBuffer[UART_RX_NUM] = Res;
+    UART_RX_NUM++;
+    if(UART_RX_NUM > RxBufferSize)
     {
-      if (UART_RX_NUM & 0x40) /*Recived 0x0d*/
-      {
-        if (Res != 0x0a)
-          UART_RX_NUM = 0; /*Receive error, restart*/
-        else
-          UART_RX_NUM |= 0x80; /*Reviced finshed*/
-      }
-      else /*No receive 0x0d*/
-      {
-        if (Res == 0x0d)
-          UART_RX_NUM |= 0x40;
-        else
-        {
-          RxBuffer[UART_RX_NUM & 0X3F] = Res;
-          UART_RX_NUM++;
-          if (UART_RX_NUM > 63)
-            UART_RX_NUM = 0; /*Receive Error, restart*/
-        }
-      }
+      UART_RX_NUM = 0;
     }
   }
 }

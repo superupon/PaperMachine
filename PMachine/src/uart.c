@@ -10,6 +10,7 @@
 ***************************************************************************/
 
 #include "uart.h"
+#include "string.h"
 
 /**************************************************************************
  * Fuction Name: uart_conf
@@ -38,8 +39,8 @@ void uart_conf(void)
 
 /**************************************************************************
  * Function Name: UART1_SendByte
- * Description £ºuart port will send a byte
- * Input  £ºu8 data
+ * Description ï¿½ï¿½uart port will send a byte
+ * Input  ï¿½ï¿½u8 data
  * Example: UART1_SendByte('a')
  *************************************************************************/
 void UART1_SendByte(u8 data)
@@ -75,4 +76,19 @@ u8 UART1_ReceiveByte(void)
     ;
   USART1_RX_BUF = (uint8_t)UART1_DR;
   return USART1_RX_BUF;
+}
+
+void Clear_ReceiveBuff()
+{
+  u8 i = 0;
+  for(i = 0; i < RxBufferSize; i++)
+  {
+    RxBuffer[i] = 0x00;
+  }
+  UART_RX_NUM = 0;
+}
+
+u8 Find_Recv_Str(u8* str_to_find)
+{
+  return (strstr(RxBuffer, str_to_find)!= NULL);
 }
