@@ -21,3 +21,5 @@
 #define EAT0_ERROR            -51
 
 int Check_Status(void);
+
+extern char phone_str[128];

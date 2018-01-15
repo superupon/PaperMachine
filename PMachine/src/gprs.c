@@ -3,6 +3,7 @@
 #include "string.h"
 #include "stdlib.h"
 char server_ip_port_cmd[45];
+char phone_str[128];
 
 static void delay(u32 nCount)
 {
@@ -13,7 +14,7 @@ static void delay(u32 nCount)
   }
 }
 
-static int send_at_command(u8* send_buff, u8* answer, u16 interval_time)
+int send_at_command(u8* send_buff, u8* answer, u16 interval_time)
 {
   Clear_ReceiveBuff();
   UART1_SendString(send_buff, strlen((char*)send_buff));
@@ -22,11 +23,11 @@ static int send_at_command(u8* send_buff, u8* answer, u16 interval_time)
   return Find_Recv_Str(answer);
 }
 
-static int send_at_command_end(u8* send_buff, u8* answer, u16 interval_time)
+int send_at_command_end(u8* send_buff, u8* answer, u16 interval_time)
 {
   Clear_ReceiveBuff();
   UART1_SendString(send_buff, strlen((char *)send_buff));
-  delay(50000);
+  delay(550000);
   return Find_Recv_Str(answer);
 }
 
@@ -102,6 +103,15 @@ int send_data_to_server(char *server_IP_and_port, char *content)
   {
     return END_CHAR_ERROR;
   }
-
   return 1;
+}
+
+void Get_PhoneNumber()
+{
+  send_at_command("AT+CNUM", "", 50);
+  Clear_ReceiveBuff();
+  UART1_SendString("AT+CNUM", strlen("AT+CNUM"));
+  UART1_SendByte(0x0D);
+  delay(50000);
+  strncpy(phone_str, RxBuffer, 64);
 }
