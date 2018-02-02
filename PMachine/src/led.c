@@ -57,7 +57,7 @@ void Delay(u32 nCount)
 void Blink(u8 speed)
 {
   u8 i, j;
-  for(j = 0; j < 10; j++)
+  for(j = 0; j < 2; j++)
   {
     LED_On();
     for(i = 0; i < 10*speed; i++)

@@ -27,7 +27,7 @@ int send_at_command_end(u8* send_buff, u8* answer, u16 interval_time)
 {
   Clear_ReceiveBuff();
   UART1_SendString(send_buff, strlen((char *)send_buff));
-  delay(550000);
+  delay(500000);
   return Find_Recv_Str(answer);
 }
 
@@ -108,9 +108,8 @@ int send_data_to_server(char *server_IP_and_port, char *content)
 
 void Get_PhoneNumber()
 {
-  send_at_command("AT+CNUM", "", 50);
   Clear_ReceiveBuff();
-  UART1_SendString("AT+CNUM", strlen("AT+CNUM"));
+  UART1_SendString("AT+CIMI", strlen("AT+CIMI"));
   UART1_SendByte(0x0D);
   delay(50000);
   strncpy(phone_str, RxBuffer, 64);
