@@ -3,7 +3,7 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://46937168.ziyid.club';
+var host = 'https://www.jiqizhixing.cn';
 
 var config = {
 
@@ -21,7 +21,10 @@ var config = {
         tunnelUrl: `${host}/weapp/tunnel`,
 
         // 上传图片接口
-        uploadUrl: `${host}/weapp/upload`
+        uploadUrl: `${host}/weapp/upload`,
+
+        // Command Interface
+        cmdUrl: `${host}/weapp/request`
     }
 };
 
