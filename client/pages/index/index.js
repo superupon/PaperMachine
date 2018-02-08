@@ -2,6 +2,7 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
+const {mysql} = qcloud
 
 Page({
     data: {
@@ -88,6 +89,18 @@ Page({
         }
     },
 
+    doSendRequest: function (){
+       var options = {
+           url : config.service.cmdUrl,
+           data : {
+             id: 'wx460016684801371'
+           },
+           header:{
+               'content-type':'application/json'
+           }
+       }
+       wx.request(options)
+    },
     // 上传图片接口
     doUpload: function () {
         var that = this
