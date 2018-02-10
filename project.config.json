@@ -10,7 +10,8 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"appid": "wxd075164ff8e3bdb0",
-	"projectname": "PMachine",
+	"appid": "wx371321e992a7d957",
+	"projectname": "Paper",
+	"libVersion": "1.9.1",
 	"condition": {}
 }
