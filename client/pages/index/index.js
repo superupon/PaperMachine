@@ -9,8 +9,10 @@ Page({
         userInfo: {},
         logged: false,
         takeSession: false,
-        requestResult: ''
+        requestResult: '',
+        imageSrc:'River.jpg'
     },
+    
 
     // 用户登录示例
     login: function() {
@@ -90,17 +92,34 @@ Page({
     },
 
     doSendRequest: function (){
-       var options = {
-           url : config.service.cmdUrl,
-           data : {
-             id: 'wx460016684801371'
-           },
-           header:{
-               'content-type':'application/json'
+       var device_id = ''
+       wx.scanCode({
+         success: (res) => {
+           device_id = res.result
+           console.log(device_id)
+           var options = {
+             url: config.service.cmdUrl,
+             data: {
+               id: device_id,
+               user_id: this.data.userInfo.openId
+             },
+             header: {
+               'content-type': 'application/json'
+             }
            }
-       }
-       wx.request(options)
+           wx.request(options)
+         }
+       })
+       //console.log(this.data.userInfo.openId)
+       
     },
+
+    toDataPage: function(){
+      wx.navigateTo({
+        url: '../data/statistic',
+      })
+    },
+
     // 上传图片接口
     doUpload: function () {
         var that = this
