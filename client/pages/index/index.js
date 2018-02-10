@@ -2,7 +2,7 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
-const {mysql} = qcloud
+const { mysql } = qcloud
 
 Page({
     data: {
@@ -10,17 +10,17 @@ Page({
         logged: false,
         takeSession: false,
         requestResult: '',
-        imageSrc:'River.jpg'
+        imageSrc: 'River.jpg'
     },
-    
-    /**
+
+  /**
    * 生命周期函数--监听页面加载
    */
     onLoad: function (options) {
-      this.login()
+        this.login()
     },
     // 用户登录示例
-    login: function() {
+    login: function () {
         if (this.data.logged) return
 
         util.showBusy('正在登录')
@@ -77,14 +77,14 @@ Page({
         var options = {
             url: config.service.requestUrl,
             login: true,
-            success (result) {
+            success(result) {
                 util.showSuccess('请求成功完成')
                 console.log('request success', result)
                 that.setData({
                     requestResult: JSON.stringify(result.data)
                 })
             },
-            fail (error) {
+            fail(error) {
                 util.showModel('请求失败', error);
                 console.log('request fail', error);
             }
@@ -96,33 +96,33 @@ Page({
         }
     },
 
-    doSendRequest: function (){
-       var device_id = ''
-       wx.scanCode({
-         success: (res) => {
-           device_id = res.result
-           console.log(device_id)
-           var options = {
-             url: config.service.cmdUrl,
-             data: {
-               id: device_id,
-               user_id: this.data.userInfo.openId
-             },
-             header: {
-               'content-type': 'application/json'
-             }
-           }
-           wx.request(options)
-         }
-       })
-       //console.log(this.data.userInfo.openId)
-       
+    doSendRequest: function () {
+        var device_id = ''
+        wx.scanCode({
+            success: (res) => {
+                device_id = res.result
+                console.log(device_id)
+                var options = {
+                    url: config.service.cmdUrl,
+                    data: {
+                        id: device_id,
+                        user_id: this.data.userInfo.openId
+                    },
+                    header: {
+                        'content-type': 'application/json'
+                    }
+                }
+                wx.request(options)
+            }
+        })
+        //console.log(this.data.userInfo.openId)
+
     },
 
-    toDataPage: function(){
-      wx.navigateTo({
-        url: '../data/statistic',
-      })
+    toDataPage: function () {
+        wx.navigateTo({
+            url: '../data/statistic',
+        })
     },
 
     // 上传图片接口
@@ -134,7 +134,7 @@ Page({
             count: 1,
             sizeType: ['compressed'],
             sourceType: ['album', 'camera'],
-            success: function(res){
+            success: function (res) {
                 util.showBusy('正在上传')
                 var filePath = res.tempFilePaths[0]
 
@@ -144,7 +144,7 @@ Page({
                     filePath: filePath,
                     name: 'file',
 
-                    success: function(res){
+                    success: function (res) {
                         util.showSuccess('上传图片成功')
                         console.log(res)
                         res = JSON.parse(res.data)
@@ -154,13 +154,13 @@ Page({
                         })
                     },
 
-                    fail: function(e) {
+                    fail: function (e) {
                         util.showModel('上传图片失败')
                     }
                 })
 
             },
-            fail: function(e) {
+            fail: function (e) {
                 console.error(e)
             }
         })
