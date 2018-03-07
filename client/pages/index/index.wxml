@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
     <!-- 用户登录测试 -->
-    <view class="userinfo" bindlongpress="toDataPage">
+    <!--<view class="userinfo" bindlongpress="toDataPage">
         <image
             class="userinfo-avatar"
             src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}"
@@ -12,16 +12,19 @@
             <text class="userinfo-nickname" wx:if="{{logged}}">{{userInfo.lastLoginTime}}</text>
         </view>
     </view>
+    -->
 
     <!-- 信道连接测试 -->
-    <view class="uploader">
-        <text>请单击发送请求按键</text>
-    </view>
-    <view class="uploader-image">
+    <view class="uploader-image" bindlongpress="toDataPage">
         <image mode="scaleToFill" src="{{imageSrc}}" >
         </image>
     </view>
     <view class="uploader">
-        <button type="primary" bindtap="doSendRequest" >发送请求</button>
+        <view wx:if="{{deviceCode == ''}}">
+          <button type="primary" bindtap='doSendRequest'>{{logged ? '扫码出纸' : '授权登录'}}</button>
+        </view>
+        <view wx:else>
+          <button type="primary" bindtap="doSendRequest" >{{logged ? '立即出纸' : '授权登录'}}</button>
+        </view>        
     </view>
 </view>

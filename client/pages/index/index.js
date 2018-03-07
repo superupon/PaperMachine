@@ -10,14 +10,24 @@ Page({
         logged: false,
         takeSession: false,
         requestResult: '',
-        imageSrc: 'River.jpg'
+        imageSrc: 'River.jpg',
+        deviceCode: '',
+        hasDeviceCode: false
     },
 
   /**
    * 生命周期函数--监听页面加载
    */
     onLoad: function (options) {
+        if(options.device)
+        {
+          var deviceCode = decodeURIComponent(options.device)
+          this.setData({
+            deviceCode: deviceCode
+          })
+        }
         this.login()
+        console.log(this.data.deviceCode)
     },
     // 用户登录示例
     login: function () {
@@ -98,25 +108,47 @@ Page({
 
     doSendRequest: function () {
         var device_id = ''
-        wx.scanCode({
-            success: (res) => {
+        if(!this.data.logged)
+           this.login()
+        else{
+          console.log('no logged')
+          console.log(this.data.deviceCode)
+          if (!this.data.deviceCode) {
+            wx.scanCode({
+              success: (res) => {
                 device_id = res.result
                 console.log(device_id)
                 var options = {
-                    url: config.service.cmdUrl,
-                    data: {
-                        id: device_id,
-                        user_id: this.data.userInfo.openId
-                    },
-                    header: {
-                        'content-type': 'application/json'
-                    }
+                  url: config.service.cmdUrl,
+                  data: {
+                    id: device_id,
+                    user_id: this.data.userInfo.nickname
+                  },
+                  header: {
+                    'content-type': 'application/json'
+                  }
                 }
                 wx.request(options)
+              }
+            })
+          }
+          else {
+            console.log('no scan')
+            var options = {
+              url: config.service.cmdUrl,
+              data: {
+                id: this.data.deviceCode,
+                user_id: this.data.userInfo.nickname
+              },
+              header: {
+                'content-type': 'application/json'
+              }
             }
-        })
+            wx.request(options)
+          }
+        }
+        
         //console.log(this.data.userInfo.openId)
-
     },
 
     toDataPage: function () {

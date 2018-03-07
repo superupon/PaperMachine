@@ -60,7 +60,7 @@ page {
 
 .uploader-image {
     width: 100%;
-    height: 560rpx;
+    height: 80%;
 }
 
 .tunnel {
