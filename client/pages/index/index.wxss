@@ -35,7 +35,7 @@ page {
 }
 
 .uploader, .tunnel {
-    height: auto;
+    height: 100%;
     padding: 0rpx;
     flex-direction: column;
     align-items: flex-start;
@@ -51,9 +51,10 @@ page {
 
 .uploader-container {
     width: 100%;
-    height: 90rpx;
-    padding: 10rpx;
+    height: 100%;
+    padding: 5rpx 0 5rpx 0;
     display: flex;
+    align-items: center;
     align-content: center;
     justify-content: center;
     border-top: 1px solid rgba(0, 0, 0, .1);
@@ -126,7 +127,12 @@ page {
 
 .outbutton {
     width: 95%;
-    align-content: center;
+    height: 100rpx;
+    text-align: center;
+    vertical-align: middle;
+}
+.outbutton text{
+    vertical-align: middle;
 }
 
 .output{

@@ -12,7 +12,7 @@ Page({
         requestResult: '',
         imageSrc: 'River.jpg',
         deviceCode: '',
-        hasDeviceCode: false
+        tabCount: 0
     },
 
   /**
@@ -67,8 +67,8 @@ Page({
             },
 
             fail(error) {
-                util.showModel('登录失败', error)
-                console.log('登录失败', error)
+                util.showModel('授权失败', '请到微信-发现-小程序中查找已使用程序，将小程序删除后，重新扫码。')
+                console.log('授权失败', error)
             }
         })
     },
@@ -145,6 +145,12 @@ Page({
               }
             }
             wx.request(options)
+            var temp = this.data.tabCount
+            temp++
+            this.setData({
+              tabCount: temp
+            })
+            console.log(this.data.tabCount)
           }
         }
         
