@@ -13,6 +13,8 @@ int main( void )
   char end_char[2];
   int counter = 100;
   u8 response_flag = 0;
+  u16 heart_beat_count = 0;
+  u16 check_gprs_count = 0;
 
   end_char[0] = 0x1A; //End Character
   end_char[1] = '\0';
@@ -46,6 +48,18 @@ int main( void )
       {
         // Get Phone Number from SIM CARD
         Get_PhoneNumber();
+        if(check_gprs_count == 6)
+        {
+          check_gprs_count = 0;
+          if(heart_beat_count == 0)
+          {
+            Reset_GPRS();
+            Delay(10000);
+            //send_data_to_server("\"www.jiqizhixing.cn\",3000", "Reset GPRS Device");
+          }
+          heart_beat_count = 0;
+        }
+        check_gprs_count++;
         ret = send_data_to_server("\"www.jiqizhixing.cn\",3000", phone_str);//发送数据到服务器
         counter = 0;
       }
@@ -54,20 +68,34 @@ int main( void )
       if(ret)
       {
         Clear_ReceiveBuff();
-        response_flag = 1;
+        //response_flag = 1;
+        for(index = 0; index < 2; index++)
+        {
+          Output_Low();
+          Delay(200000);
+          Output_High();
+          Delay(100000);
+        }
       }
 
       ret = Find_Recv_Str("THREE");
       if(ret)
       {
         Clear_ReceiveBuff();
-        for(index = 0; index < 3; index++)
+        for(index = 0; index < 1; index++)
         {
           Output_Low();
-          Delay(200000);
+          Delay(300000);
           Output_High();
-          Delay(600000);
+          Delay(20000);
         }
+      }
+      
+      ret = Find_Recv_Str("TWO");
+      if(ret)
+      {
+        Clear_ReceiveBuff();
+        heart_beat_count++;
       }
       Delay(1000);
     }

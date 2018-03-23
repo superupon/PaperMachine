@@ -5,5 +5,7 @@
 void Output_Conf(void);
 void Output_High();
 void Output_Low();
+void ResetGPRS_Conf(void);
+void Reset_GPRS(void);
 
 #endif

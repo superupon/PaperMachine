@@ -20,3 +20,17 @@ void Output_Low()
 {
   PA_ODR &= ~0x02;
 }
+
+void ResetGPRS_Conf(void)
+{
+  PA_DDR |= 0x04;
+  PA_CR1 |= 0x04;
+  PA_CR2 |= 0x00;
+}
+
+void Reset_GPRS(void)
+{
+  PA_ODR |= 0x04;
+  Delay(2000);
+  PA_ODR &= ~0x04;
+}
