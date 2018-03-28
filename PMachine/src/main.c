@@ -48,7 +48,7 @@ int main( void )
       {
         // Get Phone Number from SIM CARD
         Get_PhoneNumber();
-        if(check_gprs_count == 6)
+        if(check_gprs_count == 24)
         {
           check_gprs_count = 0;
           if(heart_beat_count == 0)
@@ -69,11 +69,13 @@ int main( void )
       {
         Clear_ReceiveBuff();
         //response_flag = 1;
-        for(index = 0; index < 2; index++)
+        for(index = 0; index < 1; index++)
         {
           Output_Low();
-          Delay(200000);
+          Delay(100000);
           Output_High();
+          Delay(100000);
+          Output_Low();
           Delay(100000);
         }
       }
