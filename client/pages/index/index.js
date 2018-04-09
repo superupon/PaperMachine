@@ -10,7 +10,7 @@ Page({
         logged: false,
         takeSession: false,
         requestResult: '',
-        imageSrc: 'River.jpg',
+        imageSrc: 'bkimg.jpg',
         deviceCode: '',
         tabCount: 0
     },
