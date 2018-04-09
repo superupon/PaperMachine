@@ -122,7 +122,7 @@ Page({
                   url: config.service.cmdUrl,
                   data: {
                     id: device_id,
-                    user_id: this.data.userInfo.nickname
+                    user_id: this.data.userInfo.nickName
                   },
                   header: {
                     'content-type': 'application/json'
@@ -138,7 +138,7 @@ Page({
               url: config.service.cmdUrl,
               data: {
                 id: this.data.deviceCode,
-                user_id: this.data.userInfo.nickname
+                user_id: this.data.userInfo.nickName
               },
               header: {
                 'content-type': 'application/json'
