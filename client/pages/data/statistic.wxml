@@ -1,2 +1,10 @@
 <!--pages/data/statistic.wxml-->
-<text>pages/data/statistic.wxml</text>
+<view class="itemView">
+  <input class="input" placeholder="用户名" placeholder-style="font-size:25px" auto-focus/>
+</view>
+<view class="itemView">
+  <input class="input" placeholder="密码" placeholder-style="font-size:25px" auto-focus/>
+</view>
+<view class="itemView">
+  <button type="primary">登录</button>
+</view>
