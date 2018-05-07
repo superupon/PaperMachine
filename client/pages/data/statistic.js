@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    logged : false
   },
 
   /**
@@ -66,6 +66,8 @@ Page({
 
   doBackendLogin : function () {
     console.log('doBackendLogin')
+    this.setData({
+      logged: true})
   }
 
 })
