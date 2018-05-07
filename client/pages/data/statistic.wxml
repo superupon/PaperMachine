@@ -6,5 +6,5 @@
   <input class="input" placeholder="密码" placeholder-style="font-size:25px" auto-focus/>
 </view>
 <view class="itemView">
-  <button type="primary">登录</button>
+  <button type="primary" bindtap='doBackendLogin'>登录</button>
 </view>

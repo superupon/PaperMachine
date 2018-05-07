@@ -62,5 +62,10 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  doBackendLogin : function () {
+    console.log('doBackendLogin')
   }
+
 })
