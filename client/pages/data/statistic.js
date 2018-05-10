@@ -1,4 +1,6 @@
 // pages/data/statistic.js
+var config = require('../../config')
+
 Page({
 
   /**
@@ -65,6 +67,24 @@ Page({
   },
 
   doBackendLogin : function () {
+    var options = {
+      url: config.service.backLoginUrl,
+      data: {
+        name: 'test',
+        password: 'test'
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log("Success")
+      },
+
+      fail: function (e) {
+        console.log("Fail")
+      }
+    }
+    wx.request(options)
     console.log('doBackendLogin')
     this.setData({
       logged: true})
