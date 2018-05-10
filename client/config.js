@@ -24,7 +24,13 @@ var config = {
         uploadUrl: `${host}/weapp/upload`,
 
         // Command Interface
-        cmdUrl: `${host}/weapp/request`
+        cmdUrl: `${host}/weapp/request`,
+
+        // Back End Login Interface
+        backLoginUrl: `${host}/weapp/back_login`,
+
+        // Data Interface
+        dataUrl: `${host}/weapp/data`
     }
 };
 
