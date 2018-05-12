@@ -1,9 +1,9 @@
 <!--pages/data/statistic.wxml-->
 <view class="itemView" wx:if="{{!logged}}">
-  <input class="input" placeholder="用户名" placeholder-style="font-size:25px" auto-focus/>
+  <input class="input" placeholder="用户名" placeholder-style="font-size:25px" auto-focus bindinput="usernameInput"/>
 </view>
 <view class="itemView" wx:if="{{!logged}}">
-  <input class="input" placeholder="密码" placeholder-style="font-size:25px" auto-focus/>
+  <input class="input" placeholder="密码" placeholder-style="font-size:25px" auto-focus bindinput="passwordInput"/>
 </view>
 <view class="itemView" wx:if="{{!logged}}">
   <button type="primary" bindtap='doBackendLogin'>登录</button>

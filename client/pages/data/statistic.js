@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logged : false
+    logged : false,
+    username : '',
+    password : ''
   },
 
   /**
@@ -66,18 +68,30 @@ Page({
   
   },
 
+  // Setting username
+  usernameInput : function (e) {
+    this.setData({username : e.detail.value})
+  },
+
+  // Setting password
+  passwordInput : function (e) {
+    this.setData({ password: e.detail.value })
+  },
+
   doBackendLogin : function () {
+    var self = this
     var options = {
       url: config.service.backLoginUrl,
       data: {
-        name: 'test',
-        password: 'test'
+        name: this.data.username,
+        password: this.data.password
       },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log("Success")
+        if (res.data.result)
+          self.setData({logged : true})
       },
 
       fail: function (e) {
@@ -85,9 +99,6 @@ Page({
       }
     }
     wx.request(options)
-    console.log('doBackendLogin')
-    this.setData({
-      logged: true})
   }
 
 })
