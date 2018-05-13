@@ -8,3 +8,78 @@
 <view class="itemView" wx:if="{{!logged}}">
   <button type="primary" bindtap='doBackendLogin'>登录</button>
 </view>
+<view class="section" wx:if="{{logged}}">
+  <view class="content">
+    <view class="table" wx:if="{{viewType == 2}}">
+      <view class="tr bg-w">
+        <view class="th">序号</view>
+        <view class="th">用户名</view>
+        <view class="th">操作</view>
+      </view>
+      <block wx:for="{{listData}}" wx:key="{{id}}">
+        <view class="tr bg-w">
+          <view class="td">{{item.id}}</view>
+          <view class="td">{{item.name}}</view>
+          <view class="td">
+            <button bindtap="deleteBlacklist" id="{{item.id}}">删除</button>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="table" wx:if="{{viewType == 1}}">
+      <view class="tr bg-w">
+        <view class="th">机器号</view>
+        <view class="th">编号</view>
+        <view class="th">地址</view>
+      </view>
+      <block wx:for="{{listData}}" wx:key="{{card_id}}">
+        <view class="tr bg-w">
+          <view class="td">{{item.card_id}}</view>
+          <view class="td">{{item.number}}</view>
+          <view class="td" style="text-decoration-line: underline; color:blue;" id="{{item.card_id}}" bindtap="changeDevice">
+            {{item.address}}               
+          </view>
+        </view>
+      </block>
+    </view>
+
+
+    <view class="table" wx:if="{{viewType == 3}}">
+      <view class="tr bg-w">
+        <view class="th">新设备</view>
+        <view class="th">操作
+        </view>
+      </view>
+      <block wx:for="{{listData}}" wx:key="{{card_id}}">
+        <view class="tr bg-w">
+          <view class="td">{{item.card_id}}</view>
+          <view class="td">
+            <button id="{{item.card_id}}" bindtap="pasteToCardIdInput">添加</button>
+          </view> 
+        </view>
+      </block>
+      
+    </view>
+    <view class="flex-wrp" style="flex-direction:column" wx:if="{{viewType == 3}}">
+      <view class="flex-wrp" style="flex-direction:row">
+        <label class="device-label">机器:</label>
+        <input class="device-input" value="{{device_card_id}}" bindinput="deviceCardIdInput"/>
+      </view>
+      <view class="flex-wrp" style="flex-direction:row">
+        <label class="device-label">编号:</label>
+        <input class="device-input" value="{{device_number}}" bindinput="deviceNumberInput"/>
+      </view>
+      <view class="flex-wrp" style="flex-direction:row">
+        <label class="device-label">地址:</label>
+        <input class="device-input" bindinput="deviceAddressInput">输入</input>
+      </view>
+      <button bindtap="addNewDevice">更新或新增</button>
+    </view>
+  </view>
+  <view class="flex-wrp" style="flex-direction:row">
+    <button class="btn" bindtap="dataView">数据</button>
+    <button class="btn" bindtap="blacklistView">黑名单</button>
+    <button class="btn" bindtap="addDeviceView">添加设备</button>
+  </view>
+</view>
+
