@@ -17,6 +17,10 @@ Page({
     device_card_id: '',
     device_number : '',
     device_address: '',
+    prize_activate: false,
+    prize_name : '',
+    prize_rate : 0.0,
+    prize_number : 0,
     lastDevice : false
   },
 
@@ -100,6 +104,7 @@ Page({
   },
 
 
+
   deleteBlacklist : function (e) {
     var self = this
     console.log(e.target.id)
@@ -175,7 +180,7 @@ Page({
     var self = this
     var temp_offset = this.data.offset
     temp_offset += 10
-    this.setData({ viewType: 1, offset: 0 })
+    this.setData({ viewType: 1, offset: temp_offset })
     console.log(temp_offset)
     var options = {
       url: config.service.dataUrl,
@@ -188,12 +193,50 @@ Page({
       },
       success: function (res) {
         if (res.data.length)
+        {
           if (res.data.length < 10 )
           {
             self.setData({lastDevice : true})
           }   
           var temp = self.data.listData.concat(res.data)
-          self.setData({ listData: temp})  
+          self.setData({ listData: temp})
+          util.showSuccess("加载数据成功")
+        }  
+      },
+
+      fail: function (e) {
+        console.log("Fail")
+      }
+    }
+    if (!self.data.lastDevice)
+      wx.request(options)
+    else
+      util.showSuccess("已经到底了")
+  },
+  pullUpLoadBlacklist: function () {
+    var self = this
+    var temp_offset = this.data.offset
+    temp_offset += 10
+    this.setData({ viewType: 2, offset: temp_offset })
+    console.log(temp_offset)
+    var options = {
+      url: config.service.dataUrl,
+      data: {
+        type: this.data.viewType,
+        offset: temp_offset,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.length) {
+          if (res.data.length < 10) {
+            self.setData({ lastDevice: true })
+          }
+          var temp = self.data.listData.concat(res.data)
+          self.setData({ listData: temp })
+          util.showSuccess("加载数据成功")
+        }
       },
 
       fail: function (e) {
@@ -322,6 +365,11 @@ Page({
       }
     }
     wx.request(options)
+  },
+
+  onPullDownRefresh : function () {
+    this.pullUpLoad()
+    wx.stopPullDownRefresh()
   }
 
 })

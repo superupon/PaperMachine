@@ -10,7 +10,7 @@
 </view>
 <view class="section" wx:if="{{logged}}">
   <view class="content">
-    <view class="table" wx:if="{{viewType == 2}}">
+    <scroll-view scroll-y="true" bindscrolltolower="pullUpLoadBlacklist" style="height:1000rpx" class="table" wx:if="{{viewType == 2}}">
       <view class="tr bg-w">
         <view class="th">序号</view>
         <view class="th">用户名</view>
@@ -25,8 +25,8 @@
           </view>
         </view>
       </block>
-    </view>
-    <view class="table" wx:if="{{viewType == 1}}">
+    </scroll-view>
+    <scroll-view scroll-y="true" bindscrolltolower="pullUpLoad" lower-threshold="30" style="height:1000rpx"  class="table" wx:if="{{viewType == 1}}">
       <view class="tr bg-w">
         <view class="th">机器号</view>
         <view class="th">编号</view>
@@ -34,14 +34,14 @@
       </view>
       <block wx:for="{{listData}}" wx:key="{{card_id}}">
         <view class="tr bg-w">
-          <view class="td">{{item.card_id}}</view>
-          <view class="td">{{item.number}}</view>
+          <view class="td"><navigator url="../device/device?card_id={{item.card_id}}&&number={{item.number}}">{{item.card_id}}</navigator></view>
+          <view class="td">{{item.number}} <icon type="{{item.state ? 'success' : 'warn'}}"/></view>
           <view class="td" style="text-decoration-line: underline; color:blue;" id="{{item.card_id}}" bindtap="changeDevice">
             {{item.address}}               
           </view>
         </view>
       </block>
-    </view>
+    </scroll-view>
 
 
     <view class="table" wx:if="{{viewType == 3}}">
@@ -73,7 +73,24 @@
         <label class="device-label">地址:</label>
         <input class="device-input" bindinput="deviceAddressInput">输入</input>
       </view>
+      <view class="flex-wrp" style="flex-direction:row">
+        <label class="device-label">启用抽奖：</label>
+        <input class="device-input" value="{{device_number}}" bindinput="deviceNumberInput"/>
+      </view>
+      <view class="flex-wrp" style="flex-direction:row">
+        <label class="device-label">奖品名称:</label>
+        <input class="device-input" value="{{device_number}}" bindinput="deviceNumberInput"/>
+      </view>
+      <view class="flex-wrp" style="flex-direction:row">
+        <label class="device-label">出奖概率:</label>
+        <input class="device-input" value="{{device_number}}" bindinput="deviceNumberInput"/>
+      </view>
+      <view class="flex-wrp" style="flex-direction:row">
+        <label class="device-label">奖品数量:</label>
+        <input class="device-input" value="{{device_number}}" bindinput="deviceNumberInput"/>
+      </view>
       <button bindtap="addNewDevice">更新或新增</button>
+      <button bindtap="deleteDevice">删除</button>
     </view>
   </view>
   <view class="flex-wrp" style="flex-direction:row">
