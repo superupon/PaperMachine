@@ -94,10 +94,12 @@ Page({
   deviceCardIdInput: function (e) {
     this.setData({ device_card_id : e.detail.value })
   },
+
   // Setting password
   deviceNumberInput: function (e) {
     this.setData({ device_number : e.detail.value })
   },
+
   // Setting password
   deviceAddressInput: function (e) {
     this.setData({ device_address: e.detail.value })
