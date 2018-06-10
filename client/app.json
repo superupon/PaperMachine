@@ -10,6 +10,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "除菌纸",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh" : true
   }
 }
