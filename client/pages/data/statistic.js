@@ -100,7 +100,7 @@ Page({
     this.setData({ device_number : e.detail.value })
   },
 
-  // Setting password
+  // Event handler for handling user input device address
   deviceAddressInput: function (e) {
     this.setData({ device_address: e.detail.value })
   },
