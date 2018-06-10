@@ -1,2 +1,23 @@
 <!--pages/device/device.wxml-->
-<text>pages/device/device.wxml</text>
+<view class="title">机器号: {{card_id}}</view>
+<view class="title">编号: {{number}}</view>
+<view class="title">今日总数: {{totalToday}}</view>
+<view class="title">总出纸数: {{total}}</view>
+<view class="title">总用户数: {{totalUserNum}}</view>
+<scroll-view class="table" scroll-y="true" bindscrolltolower="pullUpLoad" style="height:1000rpx">
+      <view class="tr bg-w">
+        <view class="th">机器号</view>
+        <view class="th">用户名</view>
+        <view class="th">时间</view>
+      </view>
+      <block wx:for="{{listData}}" wx:key="{{id}}">
+        <view class="tr bg-w">
+          <view class="td">{{item.device_id}}</view>
+          <view class="td">{{item.wx_id}}</view>
+          <view class="td">
+            {{item.time}}
+          </view>
+        </view>
+      </block>
+</scroll-view>
+
