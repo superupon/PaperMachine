@@ -138,7 +138,8 @@ Page({
               url: config.service.cmdUrl,
               data: {
                 id: this.data.deviceCode,
-                user_id: this.data.userInfo.nickName
+                user_id: this.data.userInfo.nickName,
+                open_id: this.data.userInfo.openId
               },
               header: {
                 'content-type': 'application/json'
