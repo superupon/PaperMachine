@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logged : true,
+    logged : false,
     username : '',
     password : '',
     viewType : 0,
@@ -16,7 +16,8 @@ Page({
     devices: [],
     device_card_id: '',
     device_number : '',
-    device_address: ''
+    device_address: '',
+    lastDevice : false
   },
 
   /**
@@ -100,12 +101,32 @@ Page({
 
 
   deleteBlacklist : function (e) {
-    console.log(e)
+    var self = this
+    console.log(e.target.id)
+    var options = {
+      url: config.service.dataUrl,
+      data: {
+        type: 5,
+        id: e.target.id,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        util.showSuccess("成功的删除黑名单用户")
+      },
+
+      fail: function (e) {
+        console.log("Fail")
+      }
+    }
+    wx.request(options)
+    console.log(options)
   },
 
   blacklistView : function(e) {
     var self = this
-    this.setData({ viewType : 2, offset : 0})
+    this.setData({ viewType : 2, offset : 0, listData : []})
     var options = {
       url: config.service.dataUrl,
       data: {
@@ -129,7 +150,7 @@ Page({
 
   dataView : function() {
     var self = this
-    this.setData({ viewType: 1, offset: 0 })
+    this.setData({ viewType: 1, offset: 0, lastDevice : false})
     var options = {
       url: config.service.dataUrl,
       data: {
@@ -150,7 +171,40 @@ Page({
     }
     wx.request(options)
   },
+  pullUpLoad: function () {
+    var self = this
+    var temp_offset = this.data.offset
+    temp_offset += 10
+    this.setData({ viewType: 1, offset: 0 })
+    console.log(temp_offset)
+    var options = {
+      url: config.service.dataUrl,
+      data: {
+        type: this.data.viewType,
+        offset: temp_offset,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.length)
+          if (res.data.length < 10 )
+          {
+            self.setData({lastDevice : true})
+          }   
+          var temp = self.data.listData.concat(res.data)
+          self.setData({ listData: temp})  
+      },
 
+      fail: function (e) {
+        console.log("Fail")
+      }
+    }
+    if (!self.data.lastDevice)
+      wx.request(options)
+    else
+      util.showSuccess("已经到底了")
+  },
   addDeviceView : function () {
     this.setData({viewType:3, listData : []})
     this.getNewDevice()
@@ -213,8 +267,38 @@ Page({
         console.log("Fail")
       }
     }
-    wx.request(options)
+    if(this.data.device_card_id != '')
+      wx.request(options)
     console.log(options)
+  },
+
+  deleteDevice : function(e) {
+    var self = this
+    var options = {
+      url: config.service.dataUrl,
+      data: {
+        type: 7,
+        card_id: this.data.device_card_id,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        util.showSuccess("成功删除设备")
+      },
+
+      fail: function (e) {
+        console.log("Fail")
+      }
+    }
+    if (this.data.device_card_id != '' && this.data.device_card_id.length == 15)
+      wx.request(options)
+  },
+  showDevice : function (e) {
+    console.log(e.target.dataset.card_id)
+    wx.navigateTo({
+      url: '../device/device?device_card_id=1' //+ e.target.dataset.card_id,
+    })
   },
 
   doBackendLogin : function () {
