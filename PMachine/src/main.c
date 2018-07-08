@@ -74,7 +74,7 @@ int main( void )
           Output_Low();
           Delay(100000);
           Output_High();
-          Delay(100000);
+          Delay(200000);
           Output_Low();
           Delay(100000);
         }
